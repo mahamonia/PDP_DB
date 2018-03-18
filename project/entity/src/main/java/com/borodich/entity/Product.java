@@ -3,28 +3,60 @@ package com.borodich.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.borodich.entity.api.AbstractBaseEntity;
 
+@Entity
 public class Product extends AbstractBaseEntity{
-
 	private static final long serialVersionUID = -1962662067708450327L;
-	private Long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
+	private Integer id;
+	
+	@Column(name="title")
 	private String title;
+	
+	@Column(name="price")
 	private String price;
+	
+	@Column(name="description")
 	private String description;
+	
+	@Temporal(TemporalType.DATE)
 	private Date expiryDate;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "section_fk")
 	private Section section;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "brand_fk")
 	private Brand brand;
-	private List<Custom> customs;
+	
+	@ManyToMany(mappedBy = "products")
+	private List<Chek> cheks;
 
 	public Product(){
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -76,11 +108,11 @@ public class Product extends AbstractBaseEntity{
 		this.brand = brand;
 	}
 
-	public List<Custom> getCustoms() {
-		return customs;
+	public List<Chek> getCheks() {
+		return cheks;
 	}
 
-	public void setCustoms(List<Custom> customs) {
-		this.customs = customs;
+	public void setCheks(List<Chek> cheks) {
+		this.cheks = cheks;
 	}
 }

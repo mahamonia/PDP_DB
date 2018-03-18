@@ -1,24 +1,48 @@
 package com.borodich.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import com.borodich.entity.api.AbstractBaseEntity;
 
+@Entity
 public class Adress extends AbstractBaseEntity{
-
 	private static final long serialVersionUID = 9035380868408172439L;
-	private Long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
+	private Integer id;
+	
+	@Column(name="city")
 	private String city;
+	
+	@Column(name="street")
 	private String street;
+	
+	@Column(name="house")
 	private String house;
+	
+	@Column(name="apartment")
 	private String apartment;
+	
+	@OneToMany(mappedBy = "adress")
+	private List<Chek> cheks;
 
 	public Adress(){
 	}
 	
-	public Long getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -52,5 +76,13 @@ public class Adress extends AbstractBaseEntity{
 
 	public void setApartment(String apartment) {
 		this.apartment = apartment;
+	}
+
+	public List<Chek> getCheks() {
+		return cheks;
+	}
+
+	public void setCheks(List<Chek> cheks) {
+		this.cheks = cheks;
 	}
 }

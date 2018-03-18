@@ -1,10 +1,18 @@
 package com.borodich.entity.api;
 
-public abstract class AbstractBaseEntity implements BaseEntity {
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
+public abstract class AbstractBaseEntity implements Serializable {
 
 	private static final String ID = " id = ";
 	private static final long serialVersionUID = 2819451432191359131L;
 
+	public abstract Integer getId();
+	public abstract void setId(Integer id);
+	
 	@Override
 	public boolean equals(Object object) {
 		if (this == object){
@@ -17,7 +25,7 @@ public abstract class AbstractBaseEntity implements BaseEntity {
 			return false;
 		}
 		
-		Long id = getId();
+		Integer id = getId();
 		AbstractBaseEntity that = (AbstractBaseEntity) object;
 		if (id == null){
 			return false;
@@ -30,7 +38,7 @@ public abstract class AbstractBaseEntity implements BaseEntity {
 
 	@Override
 	public int hashCode() {
-		Long id = getId();
+		Integer id = getId();
 		return id != null ? id.hashCode() : 0;
 	}
 
