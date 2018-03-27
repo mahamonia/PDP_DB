@@ -55,7 +55,7 @@
 
 	<modules>
 		<module>entity</module>
-		<module>dao</module>
+		<module>daoJPA</module>
 		<module>service</module>
 		<module>controller</module>
 		<module>run</module>
