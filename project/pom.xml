@@ -1,45 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.borodich</groupId>
 	<artifactId>e-shop</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 
-	<name>e-shop</name>
-	<url>http://maven.apache.org</url>
-
-	<parent>
+	 <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		 <version>1.5.10.RELEASE</version>
-	</parent>
+		<version>1.5.10.RELEASE</version>
+	</parent> 
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<spring-boot.version>1.5.10.RELEASE</spring-boot.version>
+		<start-class>com.borodich.run.Run</start-class>
 	</properties>
 
 	<dependencies>
-		<dependency>
+<!-- 	<dependency>
+			Import dependency management from Spring Boot
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>2.0.0.RELEASE</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency> -->
+
+	
+		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- <version>1.5.10.RELEASE</version> -->
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-	    </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<!-- <version>1.5.10.RELEASE</version> -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<!-- <version>1.5.10.RELEASE</version> -->
 			<optional>true</optional>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			 <!-- <version>6.0.6</version> -->
 		</dependency>
 	</dependencies>
 
@@ -47,18 +58,19 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>				
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		
+
 		</plugins>
 	</build>
 
 	<modules>
 		<module>entity</module>
-		<module>daoJPA</module>
+		<module>metamodel-generated</module>
+		<module>dao</module>
 		<module>service</module>
 		<module>controller</module>
 		<module>run</module>
-	</modules>
+  </modules>
 
 </project>
