@@ -3,3 +3,4 @@
 *.settings
 target/
 scripts/e-shop.mwb.bak
+*_.java
