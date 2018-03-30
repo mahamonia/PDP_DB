@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.borodich</groupId>
+		<artifactId>e-shop</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<artifactId>metamodel-generated</artifactId>
+	<packaging>jar</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/java/com/borodich/entity</directory>
+							<includes>
+								<include>**/*</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.2.4</version>
+				<executions>
+					<execution>
+						<id>generate metamodel src files</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>clean</phase>
+						<configuration>
+							<processors>
+								<processor>
+									org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor
+								</processor>
+							</processors>
+							<sourceDirectory>
+								${basedir}/../entity/src/main/java
+							</sourceDirectory>
+							<outputDirectory>src/main/java</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen</artifactId>
+						<version>5.2.10.Final</version>
+						<scope>compile</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.borodich</groupId>
+			<artifactId>entity</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
+</project>
