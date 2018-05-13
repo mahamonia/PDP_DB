@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductDaoImpl extends AbstractBaseDao<Product> implements ProductDao {
 
-	public ProductDaoImpl() {
-		super(Product.class);
-	}
+    public ProductDaoImpl() {
+	super(Product.class);
+    }
 }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SectionDaoImpl extends AbstractBaseDao<Section> implements SectionDao {
 
-	public SectionDaoImpl() {
-		super(Section.class);
-	}
+    public SectionDaoImpl() {
+	super(Section.class);
+    }
 
 }

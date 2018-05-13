@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BrandDaoImpl extends AbstractBaseDao<Brand> implements BrandDao {
 
-	public BrandDaoImpl() {
-		super(Brand.class);
-	}
+    public BrandDaoImpl() {
+	super(Brand.class);
+    }
 }

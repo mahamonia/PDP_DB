@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdressDaoImpl extends AbstractBaseDao<Adress> implements AdressDao {
 
-	public AdressDaoImpl() {
-		super(Adress.class);
-	}
+    public AdressDaoImpl() {
+	super(Adress.class);
+    }
 }

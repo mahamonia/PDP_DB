@@ -6,9 +6,15 @@ import com.borodich.entity.Vendor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VendorDaoImpl extends AbstractBaseDao<Vendor> implements VendorDao{
+public class VendorDaoImpl extends AbstractBaseDao<Vendor> implements VendorDao {
 
-	public VendorDaoImpl() {
-		super(Vendor.class);
-	}
+    public VendorDaoImpl() {
+	super(Vendor.class);
+    }
+
+    @Override
+    public Vendor getFreeVendor() {
+	Vendor vendor = new Vendor();
+	return vendor;
+    }
 }
