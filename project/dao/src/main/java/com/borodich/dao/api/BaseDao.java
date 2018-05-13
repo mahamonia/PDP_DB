@@ -6,13 +6,13 @@ import com.borodich.entity.api.AbstractBaseEntity;
 
 public interface BaseDao<T extends AbstractBaseEntity> {
 
-	public T getEntityById(Integer id);
+    public T getEntityById(Integer id);
 
-	public void create(T entity);
+    public void create(T entity);
 
-	public void update(T entity);
+    public void update(T entity);
 
-	public void delete(T entity);
+    public void delete(T entity);
 
-	public List<T> getAll();
+    public List<T> getAll();
 }
