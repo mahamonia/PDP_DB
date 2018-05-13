@@ -12,77 +12,77 @@ import javax.persistence.OneToMany;
 import com.borodich.entity.api.AbstractBaseEntity;
 
 @Entity
-public class Adress extends AbstractBaseEntity{
-	private static final long serialVersionUID = 9035380868408172439L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name="city")
-	private String city;
-	
-	@Column(name="street")
-	private String street;
-	
-	@Column(name="house")
-	private String house;
-	
-	@Column(name="apartment")
-	private String apartment;
-	
-	@OneToMany(mappedBy = "adress")
-	private List<Chek> cheks;
+public class Adress extends AbstractBaseEntity {
+    private static final long serialVersionUID = 9035380868408172439L;
 
-	public Adress(){
-	}
-	
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "city")
+    private String city;
 
-	public String getCity() {
-		return city;
-	}
+    @Column(name = "street")
+    private String street;
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    @Column(name = "house")
+    private String house;
 
-	public String getStreet() {
-		return street;
-	}
+    @Column(name = "apartment")
+    private String apartment;
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    @OneToMany(mappedBy = "adress")
+    private List<Chek> cheks;
 
-	public String getHouse() {
-		return house;
-	}
+    public Adress() {
+    }
 
-	public void setHouse(String house) {
-		this.house = house;
-	}
+    public Integer getId() {
+	return this.id;
+    }
 
-	public String getApartment() {
-		return apartment;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
 
-	public void setApartment(String apartment) {
-		this.apartment = apartment;
-	}
+    public String getCity() {
+	return city;
+    }
 
-	public List<Chek> getCheks() {
-		return cheks;
-	}
+    public void setCity(String city) {
+	this.city = city;
+    }
 
-	public void setCheks(List<Chek> cheks) {
-		this.cheks = cheks;
-	}
+    public String getStreet() {
+	return street;
+    }
+
+    public void setStreet(String street) {
+	this.street = street;
+    }
+
+    public String getHouse() {
+	return house;
+    }
+
+    public void setHouse(String house) {
+	this.house = house;
+    }
+
+    public String getApartment() {
+	return apartment;
+    }
+
+    public void setApartment(String apartment) {
+	this.apartment = apartment;
+    }
+
+    public List<Chek> getCheks() {
+	return cheks;
+    }
+
+    public void setCheks(List<Chek> cheks) {
+	this.cheks = cheks;
+    }
 }

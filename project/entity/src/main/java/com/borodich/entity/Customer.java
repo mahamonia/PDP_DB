@@ -1,79 +1,85 @@
 package com.borodich.entity;
 
+import com.borodich.entity.api.AbstractBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.borodich.entity.api.AbstractBaseEntity;
-
 @Entity
-@Table(name="customer")
-public class Customer extends AbstractBaseEntity{
-	private static final long serialVersionUID = -8335190571849701588L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "email")
-	private String eMail;
-	
-	@Column(name = "phone")
-	private String phone;
-	
-	@OneToMany(mappedBy = "customer")	
-	private List<Chek> cheks;
+@Table(name = "customer")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
+public class Customer extends AbstractBaseEntity {
+    private static final long serialVersionUID = -8335190571849701588L;
 
-	public Customer(){
-	}
-	
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "name")
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @Column(name = "email")
+    private String eMail;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(name = "phone")
+    private String phone;
 
-	public String geteMail() {
-		return eMail;
-	}
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Chek> cheks;
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
+    public Customer() {
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public Integer getId() {
+	return this.id;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
 
-	public List<Chek> getCheks() {
-		return cheks;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setCheks(List<Chek> cheks) {
-		this.cheks = cheks;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public String geteMail() {
+	return eMail;
+    }
+
+    public void seteMail(String eMail) {
+	this.eMail = eMail;
+    }
+
+    public String getPhone() {
+	return phone;
+    }
+
+    public void setPhone(String phone) {
+	this.phone = phone;
+    }
+
+    public List<Chek> getCheks() {
+	return cheks;
+    }
+
+    public void setCheks(List<Chek> cheks) {
+	this.cheks = cheks;
+    }
 }

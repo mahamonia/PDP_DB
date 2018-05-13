@@ -12,44 +12,44 @@ import javax.persistence.OneToMany;
 import com.borodich.entity.api.AbstractBaseEntity;
 
 @Entity
-public class Brand extends AbstractBaseEntity{
-	private static final long serialVersionUID = -858215859123250928L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name="title")
-	private String title;
-	
-	@OneToMany(mappedBy = "brand")
-	private List<Product> products;
-	
-	public Brand() {
-	}
+public class Brand extends AbstractBaseEntity {
+    private static final long serialVersionUID = -858215859123250928L;
 
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "title")
+    private String title;
 
-	public String getTitle() {
-		return title;
-	}
+    @OneToMany(mappedBy = "brand")
+    private List<Product> products;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Brand() {
+    }
 
-	public List<Product> getProducts() {
-		return products;
-	}
+    public Integer getId() {
+	return id;
+    }
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
+
+    public String getTitle() {
+	return title;
+    }
+
+    public void setTitle(String title) {
+	this.title = title;
+    }
+
+    public List<Product> getProducts() {
+	return products;
+    }
+
+    public void setProducts(List<Product> products) {
+	this.products = products;
+    }
 }
