@@ -12,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.borodich.entity.api.AbstractBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@Table(name = "product")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Product extends AbstractBaseEntity {
     private static final long serialVersionUID = -1962662067708450327L;
 
@@ -47,9 +53,16 @@ public class Product extends AbstractBaseEntity {
     private Brand brand;
 
     @ManyToMany(mappedBy = "products")
+    @JsonIgnore
     private List<Chek> cheks;
 
     public Product() {
+    }
+    
+    public Product(String titleNew, String priceNew, Date expiryDateNew) {
+	this.title = titleNew;
+	this.price = priceNew;
+	this.expiryDate = expiryDateNew;
     }
 
     public Integer getId() {

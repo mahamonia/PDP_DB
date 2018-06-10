@@ -35,6 +35,10 @@ public class Section extends AbstractBaseEntity {
 
     public Section() {
     }
+    
+    public Section(String titleNew) {
+	this.title = titleNew;
+    }
 
     public Integer getId() {
 	return this.id;

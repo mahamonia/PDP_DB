@@ -8,10 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.borodich.entity.api.AbstractBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@Table(name = "adress")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Adress extends AbstractBaseEntity {
     private static final long serialVersionUID = 9035380868408172439L;
 
@@ -36,6 +41,13 @@ public class Adress extends AbstractBaseEntity {
     private List<Chek> cheks;
 
     public Adress() {
+    }
+    
+    public Adress(String cityNew, String streetNew, String houseNew, String apartmentNew) {
+	this.city = cityNew;
+	this.street = streetNew;
+	this.house = houseNew;
+	this.apartment = apartmentNew;
     }
 
     public Integer getId() {

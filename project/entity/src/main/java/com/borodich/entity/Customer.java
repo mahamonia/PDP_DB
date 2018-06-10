@@ -42,6 +42,12 @@ public class Customer extends AbstractBaseEntity {
 
     public Customer() {
     }
+    
+    public Customer(String nameNew, String eMailNew, String phoneNew){
+	this.name = nameNew;
+	this.eMail = eMailNew;
+	this.phone = phoneNew;
+    }
 
     public Integer getId() {
 	return this.id;

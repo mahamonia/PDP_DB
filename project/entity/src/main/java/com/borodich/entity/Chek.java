@@ -59,13 +59,17 @@ public class Chek extends AbstractBaseEntity {
     @JoinColumn(name = "adress_fk")
     private Adress adress;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "Cheks", joinColumns = { @JoinColumn(name = "product_fk") }, inverseJoinColumns = { @JoinColumn(name = "chek_fk") })
     private List<Product> products;
 
     public Chek() {
     }
-
+    
+    public Chek(Date dateStartNew) {
+	this.dateStart = dateStartNew;
+    }
+    
     public Integer getId() {
 	return this.id;
     }

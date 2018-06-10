@@ -8,10 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.borodich.entity.api.AbstractBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@Table(name = "brand")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Brand extends AbstractBaseEntity {
     private static final long serialVersionUID = -858215859123250928L;
 
@@ -24,9 +30,14 @@ public class Brand extends AbstractBaseEntity {
     private String title;
 
     @OneToMany(mappedBy = "brand")
+    @JsonIgnore
     private List<Product> products;
 
     public Brand() {
+    }
+    
+    public Brand(String titleNew) {
+	this.title = titleNew;
     }
 
     public Integer getId() {
