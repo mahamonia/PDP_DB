@@ -1,6 +1,5 @@
 package com.borodich.controller;
 
-import com.borodich.controller.api.AbstractBaseController;
 import com.borodich.entity.Product;
 import com.borodich.service.api.ProductService;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("e-shop")
 public class ProductController extends AbstractBaseController{
     @Autowired
     private ProductService productService;
@@ -35,7 +32,7 @@ public class ProductController extends AbstractBaseController{
 
     @GetMapping("products/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Product> products = productService.getAll();
+	List<Product> products = productService.getAll(ID);
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", products);
 	return result;
@@ -64,4 +61,13 @@ public class ProductController extends AbstractBaseController{
 	result.put("result", entity);
 	return result;
     }
+    
+    @GetMapping("products/{section}")
+    public @ResponseBody Map<String, Object> getProductsFromSection(@PathVariable("section") String titleSection) {
+	List<Product> products = productService.getProductsFromSection(titleSection);
+	Map<String, Object> result = new HashMap<String, Object>();
+	result.put("result", products);
+	return result;
+    }
+    
 }

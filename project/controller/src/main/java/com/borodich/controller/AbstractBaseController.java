@@ -1,7 +1,10 @@
-package com.borodich.controller.api;
+package com.borodich.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
+@RequestMapping(value = "e-shop", produces = "application/json")
 public abstract class AbstractBaseController {
     protected static final String ID = "id";
     

@@ -1,6 +1,5 @@
 package com.borodich.controller;
 
-import com.borodich.controller.api.AbstractBaseController;
 import com.borodich.entity.Adress;
 import com.borodich.entity.Customer;
 import com.borodich.entity.Product;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "e-shop", produces = "application/json")
 public class CustomerController extends AbstractBaseController{
 
     private static final String ADRESS = "adress";
@@ -52,7 +50,7 @@ public class CustomerController extends AbstractBaseController{
 
     @GetMapping("customers/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Customer> customers = customerService.getAll();
+	List<Customer> customers = customerService.getAll(ID);
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", customers);
 	return result;
@@ -82,27 +80,9 @@ public class CustomerController extends AbstractBaseController{
 	return result;
     }
     
-    @SuppressWarnings("unchecked")
     @PostMapping("customer/chek")
-    public @ResponseBody Map<String, Object> addChek(@RequestBody Object request) {
-
-	Integer customerId =  getIdFromRequest((Map<String, Object>)request, CUSTOMER);
-	Customer customer = customerService.getById(customerId);
-	
-	List<Product> products = new ArrayList<Product>();
-	List<Object> entities = (List<Object>) ((Map<String, Object>)request).get(PRODUCTS);
-	for (Object entity : entities) {
-	    Map<String, Object> productTemp = (Map<String, Object>)entity;
-	    Integer id = (Integer.valueOf((String)productTemp.get(ID)));
-	    Product product = productService.getById(id);
-	    products.add(product);
-	}
-	
-	Integer adressId = getIdFromRequest((Map<String, Object>)request, ADRESS);
-	Adress adress = adressService.getById(adressId);
-	
-	customerService.addChekToCustomer(customer, products, adress);
-	
+    public @ResponseBody Map<String, Object> addChek(@RequestParam Integer customerId, @RequestParam Integer adressId, @RequestParam List<Integer> productsId) {
+	customerService.addChekToCustomer(customerId, productsId, adressId);
    	Map<String, Object> result = new HashMap<String, Object>();
    	result.put("result", "chek was added");
    	return result;

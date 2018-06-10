@@ -1,7 +1,7 @@
 package com.borodich.controller;
 
-import com.borodich.entity.Brand;
-import com.borodich.service.api.BrandService;
+import com.borodich.entity.Vendor;
+import com.borodich.service.api.VendorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,48 +18,56 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class BrandController extends AbstractBaseController{
+public class VendorController extends AbstractBaseController{
     
     @Autowired
-    private BrandService brandService;
+    private VendorService vendorService;
 
-    @GetMapping("brand/{id}")
+    @GetMapping("vendor/{id}")
     public @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id) {
-	Brand brand = brandService.getById(id);
+	Vendor vendor = vendorService.getById(id);
 	Map<String, Object> result = new HashMap<String, Object>();
-	result.put("result", brand);
+	result.put("result", vendor);
 	return result;
     }
 
-    @GetMapping("brands/")
+    @GetMapping("vendors/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Brand> brands = brandService.getAll(ID);
+	List<Vendor> vendor = vendorService.getAll(ID);
 	Map<String, Object> result = new HashMap<String, Object>();
-	result.put("result", brands);
+	result.put("result", vendor);
 	return result;
     }
 
-    @PostMapping("brand/")
-    public @ResponseBody Map<String, Object> createEntity(@RequestBody Brand entity) {
+    @PostMapping("vendor/")
+    public @ResponseBody Map<String, Object> createEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	brandService.create(entity);
+	vendorService.create(entity);
 	result.put("result", "created");
 	return result;
     }
 
-    @DeleteMapping("brand/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Brand entity) {
+    @DeleteMapping("vendor/")
+    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	brandService.delete(entity);
+	vendorService.delete(entity);
 	result.put("result", "deleted");
 	return result;
     }
 
-    @PutMapping("brand/")
-    public @ResponseBody Map<String, Object> updateEntity(@RequestBody Brand entity) {
+    @PutMapping("vendor/")
+    public @ResponseBody Map<String, Object> updateEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	brandService.update(entity);
+	vendorService.update(entity);
 	result.put("result", entity);
+	return result;
+    }
+    
+    @GetMapping("vendor/free")
+    public @ResponseBody Map<String, Object> getFreeVendor() {
+	Map<String, Object> result = new HashMap<String, Object>();
+	Vendor freeVendor = vendorService.getFreeVendor();
+	result.put("result", freeVendor);
 	return result;
     }
 }

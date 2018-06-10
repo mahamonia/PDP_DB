@@ -1,6 +1,5 @@
 package com.borodich.controller;
 
-import com.borodich.controller.api.AbstractBaseController;
 import com.borodich.entity.Section;
 import com.borodich.service.api.SectionService;
 
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("e-shop")
 public class SectionController extends AbstractBaseController{
     
     @Autowired
@@ -36,7 +33,7 @@ public class SectionController extends AbstractBaseController{
 
     @GetMapping("sections/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Section> sections = sectionService.getAll();
+	List<Section> sections = sectionService.getAll(ID);
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", sections);
 	return result;
