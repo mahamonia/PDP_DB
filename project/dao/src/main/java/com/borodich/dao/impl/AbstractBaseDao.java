@@ -7,10 +7,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class AbstractBaseDao<T extends AbstractBaseEntity> implements BaseDao<T> {
-    private String queryFormat = "SELECT entity FROM %s entity";
+    private static final String COLUMN_ID = "id";
+
+    private String queryFormat = "SELECT entity FROM %s entity ORDER BY %s";
 
     protected Class<T> clazz;
     @PersistenceContext
@@ -18,6 +22,18 @@ public abstract class AbstractBaseDao<T extends AbstractBaseEntity> implements B
 
     public AbstractBaseDao(Class<T> clazz) {
 	this.clazz = clazz;
+    }
+
+    protected CriteriaBuilder getCriteriaBuilder() {
+	return entityManager.getCriteriaBuilder();
+    }
+
+    protected CriteriaQuery<T> getCriteriaQuery() {
+	return (CriteriaQuery<T>) getCriteriaBuilder().createQuery(clazz);
+    }
+
+    protected TypedQuery<T> getTypedQuery(CriteriaQuery<T> criteriaQuery) {
+	return (TypedQuery<T>) entityManager.createQuery(criteriaQuery);
     }
 
     @Override
@@ -40,12 +56,14 @@ public abstract class AbstractBaseDao<T extends AbstractBaseEntity> implements B
 	entityManager.remove(entity);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public List<T> getAll() {
+    public List<T> getAll(String orderBy) {
 	String table = clazz.getSimpleName();
-	String querySql = String.format(queryFormat, table);
-	Query query = entityManager.createQuery(querySql);
+	if (orderBy == null || orderBy.isEmpty()) {
+	    orderBy = COLUMN_ID;
+	}
+	String querySql = String.format(queryFormat, table, orderBy);
+	TypedQuery<T> query = entityManager.createQuery(querySql, clazz);
 	return query.getResultList();
     }
 

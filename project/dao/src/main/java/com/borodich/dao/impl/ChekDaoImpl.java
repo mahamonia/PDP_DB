@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public class ChekDaoImpl extends AbstractBaseDao<Chek> implements ChekDao {
 
+    private static final String COLUMN_ID = "id";
     private static final String CHEK = "chek";
 
     public ChekDaoImpl() {
@@ -22,11 +23,9 @@ public class ChekDaoImpl extends AbstractBaseDao<Chek> implements ChekDao {
 
     @Override
     public Chek prepareNewChek(Customer customer, List<Product> products, Adress adress) {
-	Chek chek = new Chek();
-	chek.setDateStart(new Date());
+	Chek chek = new Chek(new Date());
 	chek.setIsPaid(false);
-	String number = generatedNumber();
-	chek.setNumber(number);
+	chek.setNumber(generatedNumber());
 	chek.setCustomer(customer);
 	chek.setProducts(products);
 	chek.setAdress(adress);
@@ -34,7 +33,7 @@ public class ChekDaoImpl extends AbstractBaseDao<Chek> implements ChekDao {
     }
 
     private String generatedNumber() {
-	List<Chek> cheks = getAll();
+	List<Chek> cheks = getAll(COLUMN_ID);
 	Chek chek = cheks.get(cheks.size() - 1);
 	String chekNumber = chek.getNumber();
 	String number = CHEK + String.valueOf(chekNumber.substring(4) + 1);

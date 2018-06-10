@@ -14,5 +14,5 @@ public interface BaseDao<T extends AbstractBaseEntity> {
 
     public void delete(T entity);
 
-    public List<T> getAll();
+    public List<T> getAll(String orderBy);
 }
