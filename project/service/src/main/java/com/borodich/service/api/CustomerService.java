@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CustomerService extends BaseService<Customer>{
     
-    public void addChekToCustomer(Customer customer, List<Product> products, Adress adress);
+    public void addChekToCustomer(Integer customer, List<Integer> products, Integer adress);
 
 }

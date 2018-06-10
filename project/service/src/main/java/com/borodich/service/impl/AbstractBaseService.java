@@ -37,7 +37,7 @@ public abstract class AbstractBaseService<T extends AbstractBaseEntity> implemen
     }
 
     @Override
-    public List<T> getAll() {
-	return dao.getAll();
+    public List<T> getAll(String orderBy) {
+	return dao.getAll(orderBy);
     }
 }

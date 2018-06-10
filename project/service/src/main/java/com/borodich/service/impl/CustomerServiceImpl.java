@@ -1,7 +1,9 @@
 package com.borodich.service.impl;
 
+import com.borodich.dao.api.AdressDao;
 import com.borodich.dao.api.ChekDao;
 import com.borodich.dao.api.CustomerDao;
+import com.borodich.dao.api.ProductDao;
 import com.borodich.dao.api.VendorDao;
 import com.borodich.entity.Adress;
 import com.borodich.entity.Chek;
@@ -24,15 +26,23 @@ public class CustomerServiceImpl extends AbstractBaseService<Customer> implement
     private VendorDao vendorDao;
     @Autowired
     private ChekDao chekDao;
+    @Autowired
+    private ProductDao productDao;
+    @Autowired
+    private AdressDao adressDao;
 
     @Override
-    public void addChekToCustomer(Customer customer, List<Product> products, Adress adress) {
+    public void addChekToCustomer(Integer customerId, List<Integer> productsId, Integer adressId) {
+	List<Product> products = new ArrayList<Product>();
+	for (Integer id : productsId) {
+	    Product product = productDao.getEntityById(id);
+	    products.add(product);
+	}
+	Customer customer = customerDao.getEntityById(customerId);
+	Adress adress = adressDao.getEntityById(adressId);
 	Chek chek = chekDao.prepareNewChek(customer, products, adress);
-
 	Vendor vendor = vendorDao.getFreeVendor();
 	chek.setVendor(vendor);
-
-	chekDao.create(chek);
 
 	List<Chek> cheks = new ArrayList<Chek>();
 	cheks.add(chek);

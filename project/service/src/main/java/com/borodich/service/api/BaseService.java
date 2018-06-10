@@ -14,5 +14,5 @@ public interface BaseService<T extends AbstractBaseEntity> {
 
 	public T getById(Integer id);
 
-	public List<T> getAll();
+	public List<T> getAll(String orderBy);
 }
