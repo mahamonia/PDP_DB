@@ -42,6 +42,7 @@ public class CustomerServiceImpl extends AbstractBaseService<Customer> implement
 	Adress adress = adressDao.getEntityById(adressId);
 	Chek chek = chekDao.prepareNewChek(customer, products, adress);
 	Vendor vendor = vendorDao.getFreeVendor();
+	vendor.setSatus(false);
 	chek.setVendor(vendor);
 
 	List<Chek> cheks = new ArrayList<Chek>();

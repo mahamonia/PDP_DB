@@ -81,7 +81,7 @@ public class CustomerController extends AbstractBaseController{
     }
     
     @PostMapping("customer/chek")
-    public @ResponseBody Map<String, Object> addChek(@RequestParam Integer customerId, @RequestParam Integer adressId, @RequestParam List<Integer> productsId) {
+    public @ResponseBody Map<String, Object> addChek(@RequestParam Integer customerId,  @RequestParam List<Integer> productsId, @RequestParam Integer adressId) {
 	customerService.addChekToCustomer(customerId, productsId, adressId);
    	Map<String, Object> result = new HashMap<String, Object>();
    	result.put("result", "chek was added");
