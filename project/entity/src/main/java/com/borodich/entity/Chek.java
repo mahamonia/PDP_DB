@@ -60,7 +60,7 @@ public class Chek extends AbstractBaseEntity {
     private Adress adress;
 
     @ManyToMany
-    @JoinTable(name = "Cheks", joinColumns = { @JoinColumn(name = "product_fk") }, inverseJoinColumns = { @JoinColumn(name = "chek_fk") })
+    @JoinTable(name = "chek_has_product", joinColumns = { @JoinColumn(name = "product_fk") }, inverseJoinColumns = { @JoinColumn(name = "chek_fk") })
     private List<Product> products;
 
     public Chek() {
