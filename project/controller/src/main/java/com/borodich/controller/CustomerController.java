@@ -1,8 +1,6 @@
 package com.borodich.controller;
 
-import com.borodich.entity.Adress;
 import com.borodich.entity.Customer;
-import com.borodich.entity.Product;
 import com.borodich.service.api.AdressService;
 import com.borodich.service.api.ChekService;
 import com.borodich.service.api.CustomerService;
@@ -19,17 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-public class CustomerController extends AbstractBaseController{
-
-    private static final String ADRESS = "adress";
-    private static final String PRODUCTS = "products";
-    private static final String CUSTOMER = "customer";
+public class CustomerController extends AbstractBaseController<Customer>{
 
     @Autowired
     private CustomerService customerService;
@@ -40,6 +33,7 @@ public class CustomerController extends AbstractBaseController{
     @Autowired
     private ProductService productService;
 
+    @Override
     @GetMapping("customer/{id}")
     public @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id) {
 	Customer customer = customerService.getById(id);
@@ -48,6 +42,7 @@ public class CustomerController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @GetMapping("customers/")
     public @ResponseBody Map<String, Object> getEntities() {
 	List<Customer> customers = customerService.getAll(ID);
@@ -56,6 +51,7 @@ public class CustomerController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PostMapping("customer/")
     public @ResponseBody Map<String, Object> createEntity(@RequestBody Customer entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -64,6 +60,7 @@ public class CustomerController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @DeleteMapping("customer/")
     public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Customer entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -72,6 +69,7 @@ public class CustomerController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PutMapping("customer/")
     public @ResponseBody Map<String, Object> updateEntity(@RequestBody Customer entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -81,7 +79,7 @@ public class CustomerController extends AbstractBaseController{
     }
     
     @PostMapping("customer/chek")
-    public @ResponseBody Map<String, Object> addChek(@RequestParam Integer customerId,  @RequestParam List<Integer> productsId, @RequestParam Integer adressId) {
+    public @ResponseBody Map<String, Object> addChek(@RequestParam(name="customerId") Integer customerId,  @RequestParam(name = "productsId") List<Integer> productsId, @RequestParam(name ="adressId" ) Integer adressId) {
 	customerService.addChekToCustomer(customerId, productsId, adressId);
    	Map<String, Object> result = new HashMap<String, Object>();
    	result.put("result", "chek was added");

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,10 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class ProductController extends AbstractBaseController{
+@RequestMapping(value = "e-shop", produces = "application/json")
+public class ProductController extends AbstractBaseController<Product>{
     @Autowired
     private ProductService productService;
 
+    @Override
     @GetMapping("product/{id}")
     public @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id) {
 	Product product = productService.getById(id);
@@ -30,6 +34,7 @@ public class ProductController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @GetMapping("products/")
     public @ResponseBody Map<String, Object> getEntities() {
 	List<Product> products = productService.getAll(ID);
@@ -38,6 +43,7 @@ public class ProductController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PostMapping("product/")
     public @ResponseBody Map<String, Object> createEntity(@RequestBody Product entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -46,6 +52,7 @@ public class ProductController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @DeleteMapping("product/")
     public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Product entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -54,6 +61,7 @@ public class ProductController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PutMapping("product/")
     public @ResponseBody Map<String, Object> updateEntity(@RequestBody Product entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -62,12 +70,11 @@ public class ProductController extends AbstractBaseController{
 	return result;
     }
     
-    @GetMapping("products/{section}")
-    public @ResponseBody Map<String, Object> getProductsFromSection(@PathVariable("section") String titleSection) {
+    @GetMapping("products")
+    public @ResponseBody Map<String, Object> getProductsFromSection(@RequestParam(name = "section") String titleSection) {
 	List<Product> products = productService.getProductsFromSection(titleSection);
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", products);
 	return result;
     }
-    
 }

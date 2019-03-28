@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vendor")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Vendor extends AbstractBaseEntity {
     private static final long serialVersionUID = 2243220376669935489L;
 

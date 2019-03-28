@@ -18,11 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class VendorController extends AbstractBaseController{
+public class VendorController extends AbstractBaseController<Vendor>{
     
     @Autowired
     private VendorService vendorService;
 
+    @Override
     @GetMapping("vendor/{id}")
     public @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id) {
 	Vendor vendor = vendorService.getById(id);
@@ -30,7 +31,8 @@ public class VendorController extends AbstractBaseController{
 	result.put("result", vendor);
 	return result;
     }
-
+    
+    @Override
     @GetMapping("vendors/")
     public @ResponseBody Map<String, Object> getEntities() {
 	List<Vendor> vendor = vendorService.getAll(ID);
@@ -39,6 +41,7 @@ public class VendorController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PostMapping("vendor/")
     public @ResponseBody Map<String, Object> createEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -47,6 +50,7 @@ public class VendorController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @DeleteMapping("vendor/")
     public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -55,6 +59,7 @@ public class VendorController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PutMapping("vendor/")
     public @ResponseBody Map<String, Object> updateEntity(@RequestBody Vendor entity) {
 	Map<String, Object> result = new HashMap<String, Object>();

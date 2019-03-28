@@ -1,5 +1,7 @@
 package com.borodich.entity;
 
+import com.borodich.entity.api.AbstractBaseEntity;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,13 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.borodich.entity.api.AbstractBaseEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "adress")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Adress extends AbstractBaseEntity {
     private static final long serialVersionUID = 9035380868408172439L;
 

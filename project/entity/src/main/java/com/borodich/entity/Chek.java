@@ -1,13 +1,10 @@
 package com.borodich.entity;
 
 import com.borodich.entity.api.AbstractBaseEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,9 +21,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "chek")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Chek extends AbstractBaseEntity {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 102515391124451968L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,8 +42,11 @@ public class Chek extends AbstractBaseEntity {
     @Temporal(TemporalType.DATE)
     @Column(name = "date_finish")
     private Date dateFinish;
+    
+    @Column(name = "sum")
+    private Double sum;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_fk")
     private Customer customer;
 
@@ -59,15 +58,22 @@ public class Chek extends AbstractBaseEntity {
     @JoinColumn(name = "adress_fk")
     private Adress adress;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "chek_has_product", joinColumns = { @JoinColumn(name = "product_fk") }, inverseJoinColumns = { @JoinColumn(name = "chek_fk") })
     private List<Product> products;
 
     public Chek() {
     }
     
-    public Chek(Date dateStartNew) {
+    public Chek(String numberNew, Boolean isPaidNew, Date dateStartNew, Double sumNew, Customer customerNew, List<Product> productsNew, Vendor vendorNew, Adress adressNew) {
+	this.number = numberNew;
+	this.isPaid = isPaidNew;
 	this.dateStart = dateStartNew;
+	this.sum = sumNew;
+	this.customer = customerNew;
+	this.products = productsNew;
+	this.vendor = vendorNew;
+	this.adress = adressNew;
     }
     
     public Integer getId() {
@@ -108,6 +114,14 @@ public class Chek extends AbstractBaseEntity {
 
     public void setDateFinish(Date dateFinish) {
 	this.dateFinish = dateFinish;
+    }
+    
+    public Double getSum() {
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     public Customer getCustomer() {

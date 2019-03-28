@@ -18,11 +18,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class SectionController extends AbstractBaseController{
+public class SectionController extends AbstractBaseController<Section>{
     
     @Autowired
     private SectionService sectionService;
 
+    @Override
     @GetMapping("section/{id}")
     public @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id) {
 	Section section = sectionService.getById(id);
@@ -31,6 +32,7 @@ public class SectionController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @GetMapping("sections/")
     public @ResponseBody Map<String, Object> getEntities() {
 	List<Section> sections = sectionService.getAll(ID);
@@ -39,6 +41,7 @@ public class SectionController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PostMapping("section/")
     public @ResponseBody Map<String, Object> createEntity(@RequestBody Section entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -47,6 +50,7 @@ public class SectionController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @DeleteMapping("section/")
     public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Section entity) {
 	Map<String, Object> result = new HashMap<String, Object>();
@@ -55,6 +59,7 @@ public class SectionController extends AbstractBaseController{
 	return result;
     }
 
+    @Override
     @PutMapping("section/")
     public @ResponseBody Map<String, Object> updateEntity(@RequestBody Section entity) {
 	Map<String, Object> result = new HashMap<String, Object>();

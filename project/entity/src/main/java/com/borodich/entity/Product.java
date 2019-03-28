@@ -1,5 +1,8 @@
 package com.borodich.entity;
 
+import com.borodich.entity.api.AbstractBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -16,14 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.borodich.entity.api.AbstractBaseEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "product")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Integer.class)
 public class Product extends AbstractBaseEntity {
     private static final long serialVersionUID = -1962662067708450327L;
 
@@ -36,7 +33,7 @@ public class Product extends AbstractBaseEntity {
     private String title;
 
     @Column(name = "price")
-    private String price;
+    private Double price;
 
     @Column(name = "description")
     private String description;
@@ -59,7 +56,7 @@ public class Product extends AbstractBaseEntity {
     public Product() {
     }
     
-    public Product(String titleNew, String priceNew, Date expiryDateNew) {
+    public Product(String titleNew, Double priceNew, Date expiryDateNew) {
 	this.title = titleNew;
 	this.price = priceNew;
 	this.expiryDate = expiryDateNew;
@@ -81,11 +78,11 @@ public class Product extends AbstractBaseEntity {
 	this.title = title;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
 	return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
 	this.price = price;
     }
 
