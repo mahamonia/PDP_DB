@@ -51,10 +51,10 @@ public class SectionController extends AbstractBaseController<Section>{
     }
 
     @Override
-    @DeleteMapping("section/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Section entity) {
+    @DeleteMapping("section/{id}")
+    public @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer id) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	sectionService.delete(entity);
+	sectionService.delete(id);
 	result.put("result", "deleted");
 	return result;
     }

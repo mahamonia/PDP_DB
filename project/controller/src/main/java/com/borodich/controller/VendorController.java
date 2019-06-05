@@ -51,10 +51,10 @@ public class VendorController extends AbstractBaseController<Vendor>{
     }
 
     @Override
-    @DeleteMapping("vendor/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Vendor entity) {
+    @DeleteMapping("vendor/{id}")
+    public @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer id) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	vendorService.delete(entity);
+	vendorService.delete(id);
 	result.put("result", "deleted");
 	return result;
     }

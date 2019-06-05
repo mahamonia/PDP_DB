@@ -53,7 +53,7 @@ public abstract class AbstractBaseDao<T extends AbstractBaseEntity> implements B
 
     @Override
     public void delete(T entity) {
-	entity = entityManager.contains(entity) ? entity : entityManager.merge(entity);
+	entity = entityManager.contains(entity) ? entity : entityManager.find(clazz, entity.getId());
 	entityManager.remove(entity);
     }
 

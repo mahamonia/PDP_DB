@@ -53,11 +53,11 @@ public class BrandController extends AbstractBaseController<Brand>{
     }
 
     @Override
-    @PatchMapping("brand/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Brand entity) {
+    @DeleteMapping("brand/{id}")
+    public @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer id) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	brandService.delete(entity);
-	result.put("result", "deleted");
+	brandService.delete(id);
+	result.put("result", "removed");
 	return result;
     }
 

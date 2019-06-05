@@ -53,10 +53,10 @@ public class ProductController extends AbstractBaseController<Product>{
     }
 
     @Override
-    @DeleteMapping("product/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Product entity) {
+    @DeleteMapping("product/{id}")
+    public @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer id) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	productService.delete(entity);
+	productService.delete(id);
 	result.put("result", "deleted");
 	return result;
     }

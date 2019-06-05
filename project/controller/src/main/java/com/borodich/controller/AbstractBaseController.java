@@ -17,7 +17,7 @@ public abstract class AbstractBaseController<T extends AbstractBaseEntity>{
     public abstract @ResponseBody Map<String, Object> getEntityById(@PathVariable(ID) Integer id);
     public abstract @ResponseBody Map<String, Object> getEntities();
     public abstract @ResponseBody Map<String, Object> createEntity(@RequestBody T entity);
-    public abstract @ResponseBody Map<String, Object> deleteEntity(@RequestBody T entity);
+    public abstract @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer idEntity);
     public abstract @ResponseBody Map<String, Object> updateEntity(@RequestBody T entity);
     
     

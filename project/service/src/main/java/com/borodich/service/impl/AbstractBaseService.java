@@ -27,8 +27,8 @@ public abstract class AbstractBaseService<T extends AbstractBaseEntity> implemen
     }
 
     @Override
-    public void delete(T entity) {
-	dao.delete(entity);
+    public void delete(Integer idEntity) {
+	dao.delete(dao.getEntityById(idEntity));
     }
 
     @Override

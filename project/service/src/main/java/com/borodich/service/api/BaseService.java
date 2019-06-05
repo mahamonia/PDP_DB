@@ -10,7 +10,7 @@ public interface BaseService<T extends AbstractBaseEntity> {
 
 	public void update(T entity);
 
-	public void delete(T entity);
+	public void delete(Integer idEntity);
 
 	public T getById(Integer id);
 

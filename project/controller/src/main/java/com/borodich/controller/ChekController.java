@@ -53,9 +53,9 @@ public class ChekController extends AbstractBaseController<Chek>{
     }
 
     @Override
-    @DeleteMapping("chek/")
-    public Map<String, Object> deleteEntity(@RequestBody Chek entity) {
-	chekService.delete(entity);
+    @DeleteMapping("chek/{id}")
+    public Map<String, Object> deleteEntity(@PathVariable Integer id) {
+	chekService.delete(id);
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", "deleted");
 	return result;

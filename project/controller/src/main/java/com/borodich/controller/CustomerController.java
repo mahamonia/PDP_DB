@@ -61,10 +61,10 @@ public class CustomerController extends AbstractBaseController<Customer>{
     }
 
     @Override
-    @DeleteMapping("customer/")
-    public @ResponseBody Map<String, Object> deleteEntity(@RequestBody Customer entity) {
+    @DeleteMapping("customer/{id}")
+    public @ResponseBody Map<String, Object> deleteEntity(@PathVariable Integer id) {
 	Map<String, Object> result = new HashMap<String, Object>();
-	customerService.delete(entity);
+	customerService.delete(id);
 	result.put("result", "deleted");
 	return result;
     }
