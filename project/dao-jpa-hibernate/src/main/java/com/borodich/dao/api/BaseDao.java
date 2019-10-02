@@ -8,7 +8,7 @@ public interface BaseDao<T extends AbstractBaseEntity> {
 
     public T getEntityById(Integer id);
 
-    public void create(T entity);
+    public void saveAndFlush(T entity);
 
     public void update(T entity);
 

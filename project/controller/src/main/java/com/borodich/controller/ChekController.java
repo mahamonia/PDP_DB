@@ -37,7 +37,7 @@ public class ChekController extends AbstractBaseController<Chek>{
     @Override
     @GetMapping("cheks/")
     public Map<String, Object> getEntities() {
-	List<Chek> cheks = chekService.getAll(ID);
+	List<Chek> cheks = chekService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", cheks);
 	return result;

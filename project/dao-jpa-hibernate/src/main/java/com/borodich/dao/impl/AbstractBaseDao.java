@@ -42,7 +42,7 @@ public abstract class AbstractBaseDao<T extends AbstractBaseEntity> implements B
     }
 
     @Override
-    public void create(T entity) {
+    public void saveAndFlush(T entity) {
 	entityManager.persist(entity);
     }
 

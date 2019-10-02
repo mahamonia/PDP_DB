@@ -8,16 +8,11 @@
 		<artifactId>e-shop</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>dao-jpa-hibernate</artifactId>
+	<artifactId>dao-spring-data-jpa</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>com.borodich</groupId>
 			<artifactId>entity</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.borodich</groupId>
-			<artifactId>metamodel-generated</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>

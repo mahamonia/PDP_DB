@@ -37,7 +37,7 @@ public class ProductController extends AbstractBaseController<Product>{
     @Override
     @GetMapping("products/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Product> products = productService.getAll(ID);
+	List<Product> products = productService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", products);
 	return result;

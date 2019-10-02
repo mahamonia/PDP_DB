@@ -21,37 +21,24 @@
 	</properties>
 
 	<dependencies>
-<!-- 	<dependency>
-			Import dependency management from Spring Boot
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-dependencies</artifactId>
-			<version>2.0.0.RELEASE</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency> -->
-
 	
 		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- <version>1.5.10.RELEASE</version> -->
 		</dependency>
-		<dependency>
+		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<!-- <version>1.5.10.RELEASE</version> -->
-		</dependency>
+		</dependency> 
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<!-- <version>1.5.10.RELEASE</version> -->
 			<optional>true</optional>
 		</dependency> 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			 <!-- <version>6.0.6</version> -->
 		</dependency>
 	</dependencies>
 
@@ -67,11 +54,12 @@
 
 	<modules>
 		<module>entity</module>
-		<module>metamodel-generated</module>
-		<module>dao-jpa-hibernate</module>
+		<!-- <module>metamodel-generated</module> 
+		<module>dao-jpa-hibernate</module>-->
 		<module>service</module>
 		<module>controller</module>
 		<module>run</module>
-  </modules>
+		<module>dao-spring-data-jpa</module>
+	</modules>
 
 </project>

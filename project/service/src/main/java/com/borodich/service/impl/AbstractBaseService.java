@@ -18,26 +18,26 @@ public abstract class AbstractBaseService<T extends AbstractBaseEntity> implemen
 
     @Override
     public void create(T entity) {
-	dao.create(entity);
+	dao.saveAndFlush(entity);
     }
 
     @Override
     public void update(T entity) {
-	dao.update(entity);
+	//dao.update(entity);
     }
 
     @Override
     public void delete(Integer idEntity) {
-	dao.delete(dao.getEntityById(idEntity));
+	dao.delete(dao.findById(idEntity));
     }
 
     @Override
     public T getById(Integer id) {
-	return dao.getEntityById(id);
+	return dao.findById(id);
     }
 
     @Override
-    public List<T> getAll(String orderBy) {
-	return dao.getAll(orderBy);
+    public List<T> getAll() {
+	return dao.findAll();
     }
 }

@@ -45,7 +45,7 @@ public class CustomerController extends AbstractBaseController<Customer>{
     @Override
     @GetMapping("customers/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Customer> customers = customerService.getAll(ID);
+	List<Customer> customers = customerService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", customers);
 	return result;

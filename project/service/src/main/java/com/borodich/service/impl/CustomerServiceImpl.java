@@ -36,26 +36,26 @@ public class CustomerServiceImpl extends AbstractBaseService<Customer> implement
 	List<Product> products = new ArrayList<Product>();
 	Double sum = 0.0;
 	for (Integer id : productsId) {
-	    Product product = productDao.getEntityById(id);
+	    Product product = productDao.findById(id);
 	    sum = + product.getPrice();
 	    products.add(product);
 	}
-	Customer customer = customerDao.getEntityById(customerId);
+	Customer customer = customerDao.findById(customerId);
 	Chek chek = createNewChek(sum, customer, products, adressId);
 
 	List<Chek> cheks = new ArrayList<Chek>();
 	cheks.add(chek);
 	customer.setCheks(cheks);
 
-	customerDao.update(customer);
+	//customerDao.update(customer);
     }
     
     private Chek createNewChek(Double sum, Customer customer, List<Product> products, Integer adressId){
 	Vendor vendor = vendorDao.getFreeVendor();
 	vendor.setSatus(true);
-	Adress adress = adressDao.getEntityById(adressId);
+	Adress adress = adressDao.findById(adressId);
 	Chek chek = chekDao.prepareNewChek(sum, customer, products, vendor, adress);
-	chekDao.create(chek);
+	chekDao.saveAndFlush(chek);
 	return chek;
     }
 }

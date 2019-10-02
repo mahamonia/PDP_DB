@@ -35,7 +35,7 @@ public class VendorController extends AbstractBaseController<Vendor>{
     @Override
     @GetMapping("vendors/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Vendor> vendor = vendorService.getAll(ID);
+	List<Vendor> vendor = vendorService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", vendor);
 	return result;

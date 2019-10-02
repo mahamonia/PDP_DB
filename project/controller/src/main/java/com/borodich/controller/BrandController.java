@@ -6,7 +6,6 @@ import com.borodich.service.api.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,7 +36,7 @@ public class BrandController extends AbstractBaseController<Brand>{
     @Override
     @GetMapping("brands/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Brand> brands = brandService.getAll(ID);
+	List<Brand> brands = brandService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", brands);
 	return result;

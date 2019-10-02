@@ -35,7 +35,7 @@ public class SectionController extends AbstractBaseController<Section>{
     @Override
     @GetMapping("sections/")
     public @ResponseBody Map<String, Object> getEntities() {
-	List<Section> sections = sectionService.getAll(ID);
+	List<Section> sections = sectionService.getAll();
 	Map<String, Object> result = new HashMap<String, Object>();
 	result.put("result", sections);
 	return result;
