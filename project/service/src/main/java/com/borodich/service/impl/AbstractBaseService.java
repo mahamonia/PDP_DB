@@ -1,6 +1,8 @@
 package com.borodich.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 
@@ -33,11 +35,11 @@ public abstract class AbstractBaseService<T extends AbstractBaseEntity> implemen
 
     @Override
     public T getById(Integer id) {
-	return dao.findById(id);
+	return (T) dao.findById(id);
     }
 
     @Override
     public List<T> getAll() {
-	return dao.findAll();
+	return (List<T>) dao.findAll();
     }
 }
