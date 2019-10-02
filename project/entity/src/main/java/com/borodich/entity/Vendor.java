@@ -1,9 +1,7 @@
 package com.borodich.entity;
 
 import com.borodich.entity.api.AbstractBaseEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
